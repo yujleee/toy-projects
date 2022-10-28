@@ -12,6 +12,7 @@
   - python
   - Flask 프레임워크로 서버 설정
   - CRUD API 구현
+  - MongoDB에 데이터 저장
 
 - Front-End
   - HTML5, CSS3, JavaScript
@@ -43,16 +44,21 @@
 ## ✨ 구현
 
 - 입력
+
   ![투두입력](https://user-images.githubusercontent.com/82587107/198495558-c94301f1-6c57-4ca0-8ec3-fbfa11890aa0.gif)
 
 <br/>
 
 - 수정
+
   ![투두수정](https://user-images.githubusercontent.com/82587107/198495566-b8f3d1b7-bc17-4446-bfba-82c85a5446bc.gif)
+
+  프롬프트 창에서 수정하면 반영
 
 <br/>
 
 - 완료, 삭제
+
   ![투두완료삭제](https://user-images.githubusercontent.com/82587107/198495576-ea067616-f27f-481c-9718-b8e1e01f46b3.gif)
 
 <br/>
