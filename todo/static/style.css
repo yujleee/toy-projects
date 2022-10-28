@@ -1,0 +1,93 @@
+
+* {
+    font-family: 'IBM Plex Sans KR', sans-serif;
+}
+
+body{
+    background-color: #f7f7f7;
+}
+
+.mypic {
+    width: 100%;
+    height: 200px;
+
+    background-image: linear-gradient(0deg, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://images.unsplash.com/photo-1601024445121-e5b82f020549?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1189&q=80');
+    background-position: center;
+    background-size: cover;
+
+    color: white;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.title {
+    width: 95%;
+    padding: 20px 0;
+    margin: 60px auto 40px;
+}
+
+.bold{
+    font-family: 'Black Han Sans', sans-serif;
+}
+
+.title > h1 {
+    text-align: center;
+    font-size: 46px;
+}
+
+.mybox {
+    width: 95%;
+    max-width: 700px;
+    padding: 20px;
+    box-shadow: 0px 0px 10px 0px lightgray;
+    margin: 20px auto;
+    background-color: #fff;
+}
+
+.mytodo {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.mytodo > input {
+    width: 90%;
+}
+
+.mybox > li {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    margin-bottom: 10px;
+    min-height: 48px;
+    color: #222;
+}
+
+.mybox > li:hover{
+    color: #0d6efd;
+}
+
+.mybox > li > h2 {
+    max-width: 75%;
+    font-size: 20px;
+    font-weight: 500;
+    margin-right: auto;
+    margin-bottom: 0;
+}
+
+
+
+.mybox > .done > h2 {
+    text-decoration: line-through;
+    color: rgba(0,0,0,0.4);
+}
+
+.mybox > li > .btn-outline-primary{
+    margin-right: 10px;
+}
