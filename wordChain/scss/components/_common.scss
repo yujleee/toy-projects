@@ -1,0 +1,19 @@
+.container {
+  max-width: 500px;
+  padding: 20px;
+}
+
+.title {
+  margin-top: 40px;
+  text-align: center;
+  font-weight: 700;
+}
+
+.btn-start {
+  display: block;
+  margin: 0 auto;
+
+  &.on {
+    display: none;
+  }
+}
