@@ -41,15 +41,24 @@ participantWrapper.addEventListener('keyup', (e) => {
 
 participantWrapper.addEventListener('click', (e) => {
   const btn = e.target.closest('button');
+  const input = btn.previousElementSibling;
 
   if (e.target !== btn) {
     return;
   }
 
-  if (enteringWord.length < 0) {
+  if (enteringWord.length < 1) {
+    alert('두 글자 이상 입력해주세요!');
+    input.focus();
     return;
   }
-  const input = btn.previousElementSibling;
+
+  if (!isKorean(enteringWord)) {
+    alert('한글로만 입력해주세요!');
+    input.value = '';
+    input.focus();
+    return;
+  }
 
   if (input.hasAttribute('disabled')) {
     alert('이미 작성한 것은 수정 불가능해요!');
@@ -82,6 +91,11 @@ startButton.addEventListener('click', () => {
 const setCurrentWord = (word) => {
   titleWord = word;
   currentWord.innerText = word;
+};
+
+const isKorean = (word) => {
+  const regex = /^[ㄱ-ㅎ|ㄱ가-힣]+$/;
+  return regex.test(word);
 };
 
 const checkWord = (prevWord, currWord) => {
