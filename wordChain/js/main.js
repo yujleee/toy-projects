@@ -17,7 +17,7 @@ const startGame = () => {
   }
 
   for (let i = participant; i > 0; i--) {
-    const newParticipant = `<div class="participant">
+    const newParticipant = `<div class="participant" data-id=${i}>
         <label for="prtc${i}">참가자${i}</label>
         <div class="form-wrapper">
           <input class="form-control" id="prtc${i}" type="text" placeholder="단어 입력" aria-label="참가자${i} 단어 입력" />
@@ -41,37 +41,26 @@ participantWrapper.addEventListener('keyup', (e) => {
 });
 
 participantWrapper.addEventListener('click', (e) => {
+  const target = e.target.closest('.participant');
   const btn = e.target.closest('button');
+
+  if (e.target !== btn) return;
+
   const input = btn.previousElementSibling;
 
-  if (e.target !== btn) {
-    return;
-  }
+  try {
+    if (target.dataset.id !== '1' && !checkUpperPrtcIsDone(e)) {
+      input.value = '';
+      throw new Error('상위 참가자가 먼저 입력해야 해요!');
+    }
 
-  if (!isValidWord(e)) {
-    return;
-  }
+    if (!isValidWord(e)) return;
 
-  if (input.hasAttribute('disabled')) {
-    alert('이미 작성한 것은 수정 불가능해요!');
-    return;
-  }
+    if (input.hasAttribute('disabled')) throw new Error('이미 작성한 것은 수정 불가능해요!');
 
-  let isCorrect = false;
-  if (titleWord !== '') {
-    isCorrect = checkWord(titleWord, enteringWord);
-  } else {
-    isCorrect = true;
-  }
-
-  if (isCorrect) {
-    setCurrentWord(enteringWord);
-    input.setAttribute('disabled', '');
-    input.setAttribute('readonly', '');
-  } else {
-    alert('끝말을 이어주세요!');
-    input.value = '';
-    input.focus();
+    if (!isCorrect(e)) return;
+  } catch (error) {
+    alert(error);
   }
 });
 
@@ -119,6 +108,45 @@ const checkWord = (prevWord, currWord) => {
   const currChar = currWord.substr(0, 1);
 
   return prevChar === currChar;
+};
+
+const isCorrect = (e) => {
+  const participant = e.target.closest('.participant');
+  const btn = e.target.closest('button');
+  const input = btn.previousElementSibling;
+
+  let isCorrect = false;
+
+  if (titleWord !== '') {
+    isCorrect = checkWord(titleWord, enteringWord);
+  } else {
+    isCorrect = true;
+  }
+
+  if (isCorrect) {
+    setCurrentWord(enteringWord);
+    input.setAttribute('disabled', '');
+    input.setAttribute('readonly', '');
+    participant.dataset.isDone = 'done';
+  } else {
+    alert('끝말을 이어주세요!');
+    input.value = '';
+    input.focus();
+  }
+};
+
+const checkUpperPrtcIsDone = (e) => {
+  const target = e.target.closest('.participant');
+  const participants = document.querySelectorAll('.participant');
+  const targetId = parseInt(target.dataset.id);
+
+  for (let i = 0; i <= targetId; i++) {
+    if (!participants[i].dataset.dataIsDone) {
+      return false;
+    }
+  }
+
+  return false;
 };
 
 startGame();
