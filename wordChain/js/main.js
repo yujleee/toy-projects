@@ -1,6 +1,7 @@
 const participantWrapper = document.querySelector('.participants');
 const enterButton = document.querySelectorAll('.btn');
 const startButton = document.querySelector('.btn-start');
+const restartButton = document.querySelector('.btn-restart');
 const currentWord = document.querySelector('.current-word');
 
 let titleWord = '';
@@ -86,6 +87,10 @@ participantWrapper.addEventListener('click', (e) => {
 startButton.addEventListener('click', () => {
   startGame();
   startButton.classList.toggle('on');
+});
+
+restartButton.addEventListener('click', () => {
+  location.reload();
 });
 
 const setCurrentWord = (word) => {

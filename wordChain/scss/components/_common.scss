@@ -9,11 +9,11 @@
   font-weight: 700;
 }
 
-.btn-start {
+.btn {
   display: block;
   margin: 0 auto;
 
-  &.on {
+  &.btn-start.on {
     display: none;
   }
 }
