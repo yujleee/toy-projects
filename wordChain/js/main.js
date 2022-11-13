@@ -48,16 +48,7 @@ participantWrapper.addEventListener('click', (e) => {
     return;
   }
 
-  if (enteringWord.length < 1) {
-    alert('두 글자 이상 입력해주세요!');
-    input.focus();
-    return;
-  }
-
-  if (!isKorean(enteringWord)) {
-    alert('한글로만 입력해주세요!');
-    input.value = '';
-    input.focus();
+  if (!isValidWord(e)) {
     return;
   }
 
@@ -101,6 +92,26 @@ const setCurrentWord = (word) => {
 const isKorean = (word) => {
   const regex = /^[ㄱ-ㅎ|ㄱ가-힣]+$/;
   return regex.test(word);
+};
+
+const isValidWord = (e) => {
+  const btn = e.target.closest('button');
+  const input = btn.previousElementSibling;
+
+  if (enteringWord.length < 1) {
+    alert('두 글자 이상 입력해주세요!');
+    input.focus();
+    return false;
+  }
+
+  if (!isKorean(enteringWord)) {
+    alert('한글로만 입력해주세요!');
+    input.value = '';
+    input.focus();
+    return false;
+  }
+
+  return true;
 };
 
 const checkWord = (prevWord, currWord) => {
